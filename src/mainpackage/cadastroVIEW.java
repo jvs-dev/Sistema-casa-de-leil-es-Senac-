@@ -142,42 +142,28 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {
-        // Obtendo os valores dos campos
         String nome = cadastroNome.getText();
         String valor = cadastroValor.getText();
-
-        // Verificando se os campos estão vazios
+        
         if (nome.isEmpty() || valor.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return; // Interrompe o método caso algum campo esteja vazio
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+            return;
         }
 
         try {
-            // Criando um novo produto
             ProdutosDTO produto = new ProdutosDTO();
             produto.setNome(nome);
-            produto.setValor(Integer.parseInt(valor));  // Converte o valor para inteiro
-            produto.setStatus("A Venda");  // Status fixo, pode ser alterado conforme necessidade
+            produto.setValor(Integer.parseInt(valor));
+            produto.setStatus("A Venda");
 
-            // Cadastrando o produto no banco de dados
-            ProdutosDAO produtodao = new ProdutosDAO();
-            produtodao.cadastrarProduto(produto);
+            ProdutosDAO dao = new ProdutosDAO();
+            dao.cadastrarProduto(produto);
 
-            // Mensagem de sucesso
-            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-            // Limpar os campos
             cadastroNome.setText("");
             cadastroValor.setText("");
-
         } catch (NumberFormatException e) {
-            // Caso o valor não seja um número válido
-            JOptionPane.showMessageDialog(null, "O valor deve ser um número válido!", "Erro", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            // Caso ocorra algum outro erro
-            JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O valor deve ser numérico!");
         }
-
     }
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {
