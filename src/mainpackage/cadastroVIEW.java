@@ -7,6 +7,8 @@
  *
  * @author Adm
  */
+package mainpackage;
+
 public class cadastroVIEW extends javax.swing.JFrame {
 
     /**

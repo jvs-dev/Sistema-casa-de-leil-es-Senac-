@@ -1,3 +1,5 @@
+package mainpackage;
+
 public class ProdutosDTO {
     private Integer id;
     private String nome;
